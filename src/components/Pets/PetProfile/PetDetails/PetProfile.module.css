@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.container img {
+  flex-shrink: 0;
+  height: 100%;
+  width: 20rem;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.image__container {
+  flex-shrink: 0;
+  justify-content: center;
+  height: auto;
+  width: 20rem;
+  background-color: #999;
+}
+
+.list {
+  background-color: #101012;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.list p {
+  color: #fff7;
+}
+
+.list li:first-of-type {
+  justify-content: center;
+  font-weight: 800;
+}
