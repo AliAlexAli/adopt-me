@@ -26,7 +26,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged(async function (user) {
+        const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
             if (user && user.email) login(await getOwnerByEmail(user.email));
         })
 

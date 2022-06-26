@@ -2,8 +2,7 @@ import { Favorite, FilterAltOff } from "@mui/icons-material";
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, ToggleButton, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filters } from "../../../store/petSlice";
-import { applyFilters, clearFilters } from "../../../store/petSlice";
+import { applyFilters, clearFilters, filters } from "../../../store/petSlice";
 import { RootState } from "../../../store/store";
 import { FlexBox } from "../../../themes/theme";
 
@@ -30,7 +29,9 @@ const PetSearch = () => {
         m: "0 25px 60px",
         gap: 2,
         outline: `${theme.palette.primary.main} 40px solid`,
-        borderRadius: "0 50px"
+        borderRadius: "0 50px",
+        boxSizing: "border-box",
+        maxWidth: "100%",
     }}>
         <FlexBox>
             <TextField label="Név" onChange={changeHandler("name")} value={filters.name} />

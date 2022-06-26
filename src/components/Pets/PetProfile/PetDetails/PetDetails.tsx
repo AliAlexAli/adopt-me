@@ -104,7 +104,7 @@ const PetDetails = ({ pet, setEditMode }: { pet: Pet, setEditMode: Dispatch<SetS
                     </List>
                 }
             </Box>
-            <Box sx={{ px: 2, width: "100%", boxSizing: "border-box" }}>
+            <Box className={classes["flex-right"]}>
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -126,14 +126,14 @@ const PetDetails = ({ pet, setEditMode }: { pet: Pet, setEditMode: Dispatch<SetS
                         </IconButton>
                     </Box>
                 </Box>
-                <Grid container columns={3} columnSpacing={2} py={4}>
-                    <Grid item sm={1}>
+                <Grid container columns={3} spacing={2} py={4}>
+                    <Grid item xs={3} md={1}>
                         <AttributeCard name="Kor">{printAge(pet.birth)}</AttributeCard>
                     </Grid>
-                    <Grid item sm={1}>
+                    <Grid item xs={3} md={1}>
                         <AttributeCard name="Nem">{pet.sex}</AttributeCard>
                     </Grid>
-                    <Grid item sm={1}>
+                    <Grid item xs={3} md={1}>
                         <AttributeCard name="Méret">{pet.size}</AttributeCard>
                     </Grid>
                 </Grid>

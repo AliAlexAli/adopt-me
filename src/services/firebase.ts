@@ -25,13 +25,13 @@ import { FirebaseError } from "@firebase/util";
 const db = getFirestore(app);
 const ownersCol = collection(db, "owners");
 const storage = getStorage(app);
+const urlBase =
+  "https://firestore.googleapis.com/v1/projects/adoptme-36e2a/databases/(default)/documents/pets";
 
 export async function getPets() {
   let petList: Pet[] = [];
 
-  const response = await fetch(
-    "https://firestore.googleapis.com/v1/projects/adoptme-36e2a/databases/(default)/documents/pets"
-  );
+  const response = await fetch(urlBase);
   const data = await response.json();
   data.documents.forEach((element: any) => {
     petList.push(petConverter(element.fields));
@@ -48,9 +48,7 @@ export async function getPets() {
 }
 
 export async function getPetById(id: string) {
-  const response = await fetch(
-    `https://firestore.googleapis.com/v1/projects/adoptme-36e2a/databases/(default)/documents/pets/${id}`
-  );
+  const response = await fetch(`${urlBase}/${id}`);
   const data = await response.json();
   return petConverter(data.fields);
 
@@ -67,10 +65,10 @@ export async function getPetById(id: string) {
 }
 
 export async function addPet(pet: Pet) {
-  await fetch(
-    `https://firestore.googleapis.com/v1/projects/adoptme-36e2a/databases/(default)/documents/pets?documentId=${pet.id}`,
-    { method: "POST", body: petToJSON(pet) }
-  );
+  await fetch(`${urlBase}?documentId=${pet.id}`, {
+    method: "POST",
+    body: petToJSON(pet),
+  });
 
   /*  await setDoc(doc(petsCol, pet.id), {
     ...pet,
@@ -80,10 +78,10 @@ export async function addPet(pet: Pet) {
 }
 
 export async function modifyPet(pet: Pet) {
-  await fetch(
-    `https://firestore.googleapis.com/v1/projects/adoptme-36e2a/databases/(default)/documents/pets/${pet.id}`,
-    { method: "PATCH", body: petToJSON(pet) }
-  );
+  await fetch(`${urlBase}/${pet.id}`, {
+    method: "PATCH",
+    body: petToJSON(pet),
+  });
 
   /*  await updateDoc(doc(petsCol, pet.id), {
     ...pet,
@@ -95,10 +93,7 @@ export async function modifyPet(pet: Pet) {
 export async function deletePet(pet: Pet) {
   await deleteObject(storageRef(storage, pet.image));
 
-  await fetch(
-    `https://firestore.googleapis.com/v1/projects/adoptme-36e2a/databases/(default)/documents/pets/${pet.id}`,
-    { method: "DELETE" }
-  );
+  await fetch(`${urlBase}/${pet.id}`, { method: "DELETE" });
 
   //  await deleteDoc(doc(petsCol, pet.id));
 }

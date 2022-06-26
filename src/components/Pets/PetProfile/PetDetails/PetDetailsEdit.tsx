@@ -31,9 +31,9 @@ const PetDetailsEdit = ({ pet, closeFn, saveFn }: Props) => {
 
     return (<>
         <Box className={classes.container}>
-            <div className={classes.image__container}><input id="abc" type="file" onChange={imageChangeHandler} />
+            <div className={classes.image__container}><input id="abc" type="file" accept="image/*" onChange={imageChangeHandler} />
             </div>
-            <Box sx={{ px: 2, width: "100%", boxSizing: "border-box" }}>
+            <Box className={classes["flex-right"]}>
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -49,20 +49,20 @@ const PetDetailsEdit = ({ pet, closeFn, saveFn }: Props) => {
                         </IconButton>
                     </Box>
                 </Box>
-                <Grid container columns={3} columnSpacing={2} py={4}>
-                    <Grid item sm={1}>
+                <Grid container columns={3} spacing={2} py={4}>
+                    <Grid item xs={3} md={1}>
                         <AttributeCard name="Születési dátum">{
                             <TextField variant="filled" type="date" value={modifiedPet.birth.toISOString().substring(0, 10)} onChange={dateChangeHandler} />
                         }</AttributeCard>
                     </Grid>
-                    <Grid item sm={1}>
+                    <Grid item xs={3} md={1}>
                         <AttributeCard name="Nem">{
                             <Select color="warning" fullWidth value={modifiedPet.sex} onChange={changeHandler("sex")}>
                                 <MenuItem value="Szuka">Szuka</MenuItem>
                                 <MenuItem value="Kan">Kan</MenuItem>
                             </Select>}</AttributeCard>
                     </Grid>
-                    <Grid item sm={1}>
+                    <Grid item xs={3} md={1}>
                         <AttributeCard name="Méret">{
                             <Select fullWidth value={modifiedPet.size} onChange={changeHandler("size")}>
                                 <MenuItem value="Kicsi">Kicsi</MenuItem>

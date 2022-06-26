@@ -38,7 +38,7 @@ const Login = () => {
     return (<>
         {isLoggedin && <Navigate to="/" replace={true} />}
         {error && <ErrorModal error={error}><Button onClick={() => setError(undefined)}>Újra probálom</Button></ErrorModal>}
-        <Box display="flex" gap={3} p={5} flexDirection="column" component="form" noValidate autoComplete="off">
+        <Box display="flex" gap={3} p={5} sx={{ minHeight: "100vh" }} flexDirection="column" component="form" noValidate autoComplete="off">
             <Controller
                 name="email"
                 control={control}
