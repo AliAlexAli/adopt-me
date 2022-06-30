@@ -10,6 +10,7 @@ interface Props { pet: Pet, closeFn: () => void, saveFn: (args: Pet) => void }
 
 const PetDetailsEdit = ({ pet, closeFn, saveFn }: Props) => {
     const [modifiedPet, setModifiedPet] = useState<Pet>(pet)
+    const [image, setImage] = useState<File>()
 
     const changeHandler = (filterName: keyof Pet) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent) => {
         setModifiedPet((prev) => { return { ...prev, [filterName]: e.target.value } })
@@ -22,11 +23,7 @@ const PetDetailsEdit = ({ pet, closeFn, saveFn }: Props) => {
 
     const imageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0]
-        if (file) uploadImage(file).then(image => {
-            setModifiedPet((prev) => { return { ...prev, image } })
-        }
-
-        )
+        if (file) setImage(file)
     }
 
     return (<>
@@ -44,7 +41,15 @@ const PetDetailsEdit = ({ pet, closeFn, saveFn }: Props) => {
                             <Close style={{ fontSize: 60 }} />
                         </IconButton>
 
-                        <IconButton onClick={() => saveFn(modifiedPet)}>
+                        <IconButton onClick={() => {
+                            if (image) {
+                                console.log(image)
+                                uploadImage(image).then(imgUrl => {
+                                    setModifiedPet((prev) => { return { ...prev, imgUrl } })
+                                    saveFn({ ...modifiedPet, image: imgUrl })
+                                })
+                            } else saveFn(modifiedPet)
+                        }}>
                             <Check style={{ fontSize: 60 }} />
                         </IconButton>
                     </Box>

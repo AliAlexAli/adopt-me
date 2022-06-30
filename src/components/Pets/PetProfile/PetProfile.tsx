@@ -25,7 +25,7 @@ const PetProfile = () => {
 
         {(loading) && <LoadingModal />}
 
-        {(pets) ? (editMode) ? <PetDetailsEdit pet={pets} closeFn={() => setEditMode(false)} saveFn={(args: Pet) => { modifyPet(args); setEditMode(false); update(); }} />
+        {(pets) ? (editMode) ? <PetDetailsEdit pet={pets} closeFn={() => setEditMode(false)} saveFn={(args: Pet) => { modifyPet(args).then(() => { setEditMode(false); update(); }); }} />
             : <PetDetails pet={pets} setEditMode={setEditMode} />
             : <PetDetailsSkeleton />}
     </>

@@ -20,8 +20,14 @@ export const printAge = (birthDate: Date): string => {
     age--;
   }
   if (age > 0) return `${age} éves`;
-  if (now.getMonth() - birthDate.getMonth() > 0)
+  if (
+    now.getMonth() - birthDate.getMonth() === 0 ||
+    now.getMonth() - birthDate.getMonth() === 12
+  )
+    return `${now.getDate() - birthDate.getDate()} napos`;
+  if (now.getMonth() - birthDate.getMonth() > 0) {
     return `${now.getMonth() - birthDate.getMonth()} hónapos`;
+  }
   return `${now.getMonth() - birthDate.getMonth() + 12} hónapos`;
 };
 

@@ -54,7 +54,7 @@ const PetDetails = ({ pet, setEditMode }: { pet: Pet, setEditMode: Dispatch<SetS
         <Box className={classes.container}>
             {(showDelete) &&
                 <ErrorModal error={{ name: "petDelete", message: "Biztosan törölni szeretné ezt az elemet?" }}>
-                    <Button variant="contained" onClick={() => { deletePet(pet); navigate("/kutyaim") }}>Megerősítés</Button>
+                    <Button variant="contained" onClick={() => { deletePet(pet).then(() => navigate("/kutyaim")) }}>Megerősítés</Button>
                     <Button variant="outlined" onClick={() => setShowDelete(false)}>Mégse</Button>
                 </ErrorModal>
             }
