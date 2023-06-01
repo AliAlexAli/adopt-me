@@ -90,7 +90,7 @@ const Register = () => {
                 control={control}
                 render={({ field }) => <TextField type="url" error={!!errors.website} label="Honlap" variant="outlined" {...field} />}
             />
-            <Button variant="contained" onClick={handleSubmit(onSubmit)}>Regisztrálok</Button>
+            <Button variant="contained" data-testid="submit-register" onClick={handleSubmit(onSubmit)}>Regisztrálok</Button>
         </Box >
     </>)
 }

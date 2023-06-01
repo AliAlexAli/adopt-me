@@ -58,7 +58,7 @@ const Login = () => {
                 rules={{ required: true, minLength: 6 }}
                 render={({ field }) => <TextField required type="password" error={!!errors.password} label="Jelszó" variant="outlined" {...field} helperText={passError()} />}
             />
-            <Button variant="contained" onClick={handleSubmit(onSubmit)}>Bejelentkezés</Button>
+            <Button variant="contained" data-testid="submit-login" onClick={handleSubmit(onSubmit)}>Bejelentkezés</Button>
         </Box >
     </>)
 }

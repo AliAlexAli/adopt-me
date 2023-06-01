@@ -1,8 +1,9 @@
 import { Box, Grid, Skeleton } from "@mui/material";
+import classes from "./PetProfile.module.css";
 
 const PetDetailsSkeleton = (props: any) => {
     return (
-        <Box className={props.className}>
+        <Box className={`${props.className} ${classes.container}`}>
             <Skeleton id="skeleton-img" variant="rectangular" height="100vh" width="20rem" />
             <Box sx={{ px: 2, width: "100%", boxSizing: "border-box" }}>
                 <Skeleton variant="text" width="50%" height="2rem" />

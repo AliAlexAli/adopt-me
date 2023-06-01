@@ -54,7 +54,7 @@ const PetDetails = ({ pet, setEditMode }: { pet: Pet, setEditMode: Dispatch<SetS
         <Box className={classes.container}>
             {(showDelete) &&
                 <ErrorModal error={{ name: "petDelete", message: "Biztosan törölni szeretné ezt az elemet?" }}>
-                    <Button variant="contained" onClick={() => { deletePet(pet).then(() => navigate("/kutyaim")) }}>Megerősítés</Button>
+                    <Button data-test-id="accept" variant="contained" onClick={() => { deletePet(pet).then(() => navigate("/kutyaim")) }}>Megerősítés</Button>
                     <Button variant="outlined" onClick={() => setShowDelete(false)}>Mégse</Button>
                 </ErrorModal>
             }
@@ -111,12 +111,12 @@ const PetDetails = ({ pet, setEditMode }: { pet: Pet, setEditMode: Dispatch<SetS
                 }} >
                     <Typography variant="h2">{pet.name}</Typography>
                     <Box>
-                        {userId === pet.owner && <IconButton onClick={deleteHandler}>
+                        {userId === pet.owner && <IconButton  data-testid="delete" onClick={deleteHandler}>
                             <Delete style={{ fontSize: 60 }} />
                         </IconButton>
                         }
                         {userId === pet.owner && <IconButton onClick={() => setEditMode(true)}>
-                            <Edit style={{ fontSize: 60 }} />
+                            <Edit data-testid="edit" style={{ fontSize: 60 }} />
                         </IconButton>
                         }
                         <IconButton onClick={favHandler}>

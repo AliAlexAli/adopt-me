@@ -26,6 +26,10 @@ const usePets = <T = Pet>(
         }
       })();
     setRefresh(false);
+
+    return () => {
+      setPets(undefined);
+    };
   }, [args, refresh, fetchFn]);
 
   return { pets, loading, error, update };

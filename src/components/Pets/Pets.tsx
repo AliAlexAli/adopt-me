@@ -7,7 +7,7 @@ import AuthContext from "../../context/AuthContext"
 import { clearFilters, setOwner } from "../../store/petSlice"
 import PetSearch from "./PetSearch/PetSearch"
 
-const Pets = ({ own }: { own?: true }) => {
+const Pets = ({own}: { own?: true }) => {
     const userId = useContext(AuthContext).user?.id
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -19,10 +19,10 @@ const Pets = ({ own }: { own?: true }) => {
     }, [own, userId])
 
     return <>
-        {(userId && own) && <Fab color="primary" onClick={() => navigate("./add")}><Add /></Fab>
+        {(userId && own) && <Fab color="primary" data-testid="add-pet" onClick={() => navigate("./add")}><Add/></Fab>
         }
-        <PetSearch />
-        <Outlet />
+        <PetSearch/>
+        <Outlet/>
     </ >
 }
 
